@@ -4579,6 +4579,9 @@ export interface DashboardGridLayoutSpecDTO {
 	repeatVariable?: string;
 }
 
+/**
+ * The telemetry signal to query: traces, logs or metrics. It selects the aggregation shape and is required for builder_query.
+ */
 export enum DashboardtypesAIBuilderQuerySpecDTOSignal {
 	traces = 'traces',
 }
@@ -4667,6 +4670,9 @@ export interface Querybuildertypesv5FilterDTO {
 	expression?: string;
 }
 
+/**
+ * The argument value as a number, string or boolean, for example the threshold for cutOffMin or the duration for timeShift.
+ */
 export type Querybuildertypesv5FunctionArgDTOValue = number | string;
 
 export interface Querybuildertypesv5FunctionArgDTO {
@@ -4675,6 +4681,9 @@ export interface Querybuildertypesv5FunctionArgDTO {
 	 * @description The argument name for functions that take named arguments, such as z_score_threshold or seasonality for anomaly.
 	 */
 	name?: string;
+	/**
+	 * @description The argument value as a number, string or boolean, for example the threshold for cutOffMin or the duration for timeShift.
+	 */
 	value?: Querybuildertypesv5FunctionArgDTOValue;
 }
 
@@ -4951,11 +4960,11 @@ export interface DashboardtypesAIBuilderQuerySpecDTO {
 	legend?: string;
 	/**
 	 * @type integer
-	 * @description The maximum number of rows for raw requests, or of series or rows for grouped aggregations, keeping the top entries by order. Unlimited when 0.
+	 * @description The maximum number of rows for raw requests, or of series or rows for grouped aggregations, keeping the top entries by order. When 0, aggregations are unlimited while raw requests ordered by timestamp return a page of 10000 rows; follow nextCursor for the rest.
 	 */
 	limit?: number;
 	/**
-	 * @description Applies limit within each distinct combination of the given group-by keys instead of across the whole result.
+	 * @description Reserved for applying limit within each combination of the given group-by keys. Currently stored but ignored by query execution.
 	 */
 	limitBy?: Querybuildertypesv5LimitByDTO;
 	/**
@@ -4986,6 +4995,7 @@ export interface DashboardtypesAIBuilderQuerySpecDTO {
 	/**
 	 * @enum traces
 	 * @type string
+	 * @description The telemetry signal to query: traces, logs or metrics. It selects the aggregation shape and is required for builder_query.
 	 */
 	signal: DashboardtypesAIBuilderQuerySpecDTOSignal;
 	/**
@@ -5198,6 +5208,9 @@ export interface Querybuildertypesv5LogAggregationDTO {
 	expression?: string;
 }
 
+/**
+ * The telemetry signal to query: traces, logs or metrics. It selects the aggregation shape and is required for builder_query.
+ */
 export enum Querybuildertypesv5QueryBuilderQueryGithubComSigNozSignozPkgTypesQuerybuildertypesQuerybuildertypesv5LogAggregationDTOSignal {
 	logs = 'logs',
 }
@@ -5246,11 +5259,11 @@ export interface Querybuildertypesv5QueryBuilderQueryGithubComSigNozSignozPkgTyp
 	legend?: string;
 	/**
 	 * @type integer
-	 * @description The maximum number of rows for raw requests, or of series or rows for grouped aggregations, keeping the top entries by order. Unlimited when 0.
+	 * @description The maximum number of rows for raw requests, or of series or rows for grouped aggregations, keeping the top entries by order. When 0, aggregations are unlimited while raw requests ordered by timestamp return a page of 10000 rows; follow nextCursor for the rest.
 	 */
 	limit?: number;
 	/**
-	 * @description Applies limit within each distinct combination of the given group-by keys instead of across the whole result.
+	 * @description Reserved for applying limit within each combination of the given group-by keys. Currently stored but ignored by query execution.
 	 */
 	limitBy?: Querybuildertypesv5LimitByDTO;
 	/**
@@ -5281,6 +5294,7 @@ export interface Querybuildertypesv5QueryBuilderQueryGithubComSigNozSignozPkgTyp
 	/**
 	 * @enum logs
 	 * @type string
+	 * @description The telemetry signal to query: traces, logs or metrics. It selects the aggregation shape and is required for builder_query.
 	 */
 	signal: Querybuildertypesv5QueryBuilderQueryGithubComSigNozSignozPkgTypesQuerybuildertypesQuerybuildertypesv5LogAggregationDTOSignal;
 	/**
@@ -5348,7 +5362,7 @@ export enum MetrictypesTimeAggregationDTO {
 }
 export interface Querybuildertypesv5MetricAggregationDTO {
 	/**
-	 * @description The operator and threshold for comparison space aggregations that count series meeting a condition; ignored otherwise.
+	 * @description Histogram metrics with spaceAggregation count only: the comparison operator and bucket bound used to estimate how many observations fall at or below, or above, the threshold. Ignored for other metric types and aggregations.
 	 */
 	comparisonSpaceAggregationParam?: MetrictypesComparisonSpaceAggregationParamDTO;
 	/**
@@ -5374,6 +5388,9 @@ export interface Querybuildertypesv5MetricAggregationDTO {
 	timeAggregation?: MetrictypesTimeAggregationDTO;
 }
 
+/**
+ * The telemetry signal to query: traces, logs or metrics. It selects the aggregation shape and is required for builder_query.
+ */
 export enum Querybuildertypesv5QueryBuilderQueryGithubComSigNozSignozPkgTypesQuerybuildertypesQuerybuildertypesv5MetricAggregationDTOSignal {
 	metrics = 'metrics',
 }
@@ -5422,11 +5439,11 @@ export interface Querybuildertypesv5QueryBuilderQueryGithubComSigNozSignozPkgTyp
 	legend?: string;
 	/**
 	 * @type integer
-	 * @description The maximum number of rows for raw requests, or of series or rows for grouped aggregations, keeping the top entries by order. Unlimited when 0.
+	 * @description The maximum number of rows for raw requests, or of series or rows for grouped aggregations, keeping the top entries by order. When 0, aggregations are unlimited while raw requests ordered by timestamp return a page of 10000 rows; follow nextCursor for the rest.
 	 */
 	limit?: number;
 	/**
-	 * @description Applies limit within each distinct combination of the given group-by keys instead of across the whole result.
+	 * @description Reserved for applying limit within each combination of the given group-by keys. Currently stored but ignored by query execution.
 	 */
 	limitBy?: Querybuildertypesv5LimitByDTO;
 	/**
@@ -5457,6 +5474,7 @@ export interface Querybuildertypesv5QueryBuilderQueryGithubComSigNozSignozPkgTyp
 	/**
 	 * @enum metrics
 	 * @type string
+	 * @description The telemetry signal to query: traces, logs or metrics. It selects the aggregation shape and is required for builder_query.
 	 */
 	signal: Querybuildertypesv5QueryBuilderQueryGithubComSigNozSignozPkgTypesQuerybuildertypesQuerybuildertypesv5MetricAggregationDTOSignal;
 	/**
@@ -5469,6 +5487,9 @@ export interface Querybuildertypesv5QueryBuilderQueryGithubComSigNozSignozPkgTyp
 	stepInterval?: Querybuildertypesv5StepDTO;
 }
 
+/**
+ * The telemetry signal to query: traces, logs or metrics. It selects the aggregation shape and is required for builder_query.
+ */
 export enum Querybuildertypesv5QueryBuilderQueryGithubComSigNozSignozPkgTypesQuerybuildertypesQuerybuildertypesv5TraceAggregationDTOSignal {
 	traces = 'traces',
 }
@@ -5517,11 +5538,11 @@ export interface Querybuildertypesv5QueryBuilderQueryGithubComSigNozSignozPkgTyp
 	legend?: string;
 	/**
 	 * @type integer
-	 * @description The maximum number of rows for raw requests, or of series or rows for grouped aggregations, keeping the top entries by order. Unlimited when 0.
+	 * @description The maximum number of rows for raw requests, or of series or rows for grouped aggregations, keeping the top entries by order. When 0, aggregations are unlimited while raw requests ordered by timestamp return a page of 10000 rows; follow nextCursor for the rest.
 	 */
 	limit?: number;
 	/**
-	 * @description Applies limit within each distinct combination of the given group-by keys instead of across the whole result.
+	 * @description Reserved for applying limit within each combination of the given group-by keys. Currently stored but ignored by query execution.
 	 */
 	limitBy?: Querybuildertypesv5LimitByDTO;
 	/**
@@ -5552,6 +5573,7 @@ export interface Querybuildertypesv5QueryBuilderQueryGithubComSigNozSignozPkgTyp
 	/**
 	 * @enum traces
 	 * @type string
+	 * @description The telemetry signal to query: traces, logs or metrics. It selects the aggregation shape and is required for builder_query.
 	 */
 	signal: Querybuildertypesv5QueryBuilderQueryGithubComSigNozSignozPkgTypesQuerybuildertypesQuerybuildertypesv5TraceAggregationDTOSignal;
 	/**
@@ -9759,6 +9781,9 @@ export interface MetricsexplorertypesInspectMetricsRequestDTO {
 	start: number;
 }
 
+/**
+ * The label value as a string, number or boolean.
+ */
 export type Querybuildertypesv5LabelDTOValue = string | number | boolean;
 
 export interface Querybuildertypesv5LabelDTO {
@@ -9766,6 +9791,9 @@ export interface Querybuildertypesv5LabelDTO {
 	 * @description The group-by field this label value belongs to.
 	 */
 	key?: TelemetrytypesTelemetryFieldKeyDTO;
+	/**
+	 * @description The label value as a string, number or boolean.
+	 */
 	value?: Querybuildertypesv5LabelDTOValue;
 }
 
@@ -10491,7 +10519,7 @@ export interface Querybuildertypesv5ExecStatsDTO {
 export interface Querybuildertypesv5FormatOptionsDTO {
 	/**
 	 * @type boolean
-	 * @description When true, time_series results get a zero value for every missing step of additive aggregations such as count, count_distinct, sum and rate; other aggregations keep their gaps. Defaults to false.
+	 * @description When true, every builder query and formula in a time_series result gets a zero value for each missing step, whatever its aggregation, so averages and percentiles read as zero where no data exists. PromQL and ClickHouse SQL queries keep their gaps. Defaults to false.
 	 */
 	fillGaps?: boolean;
 	/**
@@ -10783,6 +10811,9 @@ export type Querybuildertypesv5VariableItemDTOValueOneOfItem =
 	| number
 	| boolean;
 
+/**
+ * The selected value: a string, number or boolean, or a list of them for multi-select variables. The string __all__ selects every value.
+ */
 export type Querybuildertypesv5VariableItemDTOValue =
 	| string
 	| number
@@ -10794,6 +10825,9 @@ export interface Querybuildertypesv5VariableItemDTO {
 	 * @description The kind of dashboard variable: query, dynamic, custom or text.
 	 */
 	type?: Querybuildertypesv5VariableTypeDTO;
+	/**
+	 * @description The selected value: a string, number or boolean, or a list of them for multi-select variables. The string __all__ selects every value.
+	 */
 	value?: Querybuildertypesv5VariableItemDTOValue;
 }
 
